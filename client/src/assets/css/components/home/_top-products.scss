@@ -1,0 +1,18 @@
+.topProducts {
+  .title {
+    h4 {
+      background: picker(primary, flux-blue-red);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
+@include breakpoint(lg) {
+  .topProducts {
+    @include flex(center, column);
+    width: 100%;
+    .title {
+      width: 489px;
+    }
+  }
+}

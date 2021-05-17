@@ -1,0 +1,29 @@
+.sidebar {
+  width: 300px;
+  background-color: #141414;
+  padding: 20px 0px;
+  border-radius: 10px;
+  ul {
+    padding: 0;
+    list-style: none;
+    .nuxt-link-exact-active {
+      color: picker(primary, flux-blue);
+      &::before {
+        content: "";
+        width: 2px;
+        height: 36px;
+        background: picker(primary, flux-blue);
+        border-radius: 0px 10px 10px 0px;
+        transform: translateX(-1000%);
+      }
+    }
+    li {
+      padding: 7% 20px;
+      a {
+        color: #676767;
+        text-decoration: none;
+        @include flex(flex-start, row);
+      }
+    }
+  }
+}

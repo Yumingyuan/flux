@@ -1,0 +1,202 @@
+[
+	{
+		"name": "Russian Federation",
+		"code": "RU"
+	},
+	{
+		"name": "Germany",
+		"code": "DE"
+	},
+	{
+		"name": "United Kingdom",
+		"code": "GB"
+	},
+	{
+		"name": "France",
+		"code": "FR"
+	},
+	{
+		"name": "Italy",
+		"code": "IT"
+	},
+	{
+		"name": "Spain",
+		"code": "ES"
+	},
+	{
+		"name": "Ukraine",
+		"code": "UA"
+	},
+	{
+		"name": "Poland",
+		"code": "PL"
+	},
+	{
+		"name": "Romania",
+		"code": "RO"
+	},
+	{
+		"name": "Netherlands",
+		"code": "NL"
+	},
+	{
+		"name": "Netherlands Antilles",
+		"code": "AN"
+	},
+	{
+		"name": "Belgium",
+		"code": "BE"
+	},
+	{
+		"name": "Czech Republic",
+		"code": "CZ"
+	},
+	{
+		"name": "Greece",
+		"code": "GR"
+	},
+	{
+		"name": "Portugal",
+		"code": "PT"
+	},
+	{
+		"name": "Sweden",
+		"code": "SE"
+	},
+	{
+		"name": "Hungary",
+		"code": "HU"
+	},
+	{
+		"name": "Belarus",
+		"code": "BY"
+	},
+	{
+		"name": "Austria",
+		"code": "AT"
+	},
+	{
+		"name": "Serbia and Montenegro",
+		"code": "CS"
+	},
+	{
+		"name": "Switzerland",
+		"code": "CH"
+	},
+	{
+		"name": "Bulgaria",
+		"code": "BG"
+	},
+	{
+		"name": "Denmark",
+		"code": "DK"
+	},
+	{
+		"name": "Finland",
+		"code": "FI"
+	},
+	{
+		"name": "Slovakia",
+		"code": "SK"
+	},
+	{
+		"name": "Norway",
+		"code": "NO"
+	},
+	{
+		"name": "Ireland",
+		"code": "IE"
+	},
+	{
+		"name": "Croatia",
+		"code": "HR"
+	},
+	{
+		"name": "Moldova, Republic of",
+		"code": "MD"
+	},
+	{
+		"name": "Bosnia and Herzegovina",
+		"code": "BA"
+	},
+	{
+		"name": "Lithuania",
+		"code": "LT"
+	},
+	{
+		"name": "Albania",
+		"code": "AL"
+	},
+	{
+		"name": "Macedonia, The Former Yugoslav Republic of",
+		"code": "MK"
+	},
+	{
+		"name": "Slovenia",
+		"code": "SI"
+	},
+	{
+		"name": "Latvia",
+		"code": "LV"
+	},
+	{
+		"name": "Estonia",
+		"code": "EE"
+	},
+	{
+		"name": "Serbia and Montenegro",
+		"code": "CS"
+	},
+	{
+		"name": "Luxembourg",
+		"code": "LU"
+	},
+	{
+		"name": "Malta",
+		"code": "MT"
+	},
+	{
+		"name": "Iceland",
+		"code": "IS"
+	},
+	{
+		"name": "AndorrA",
+		"code": "AD"
+	},
+	{
+		"name": "Monaco",
+		"code": "MC"
+	},
+	{
+		"name": "Liechtenstein",
+		"code": "LI"
+	},
+	{
+		"name": "San Marino",
+		"code": "SM"
+	},
+	{
+		"name": "Holy See (Vatican City State)",
+		"code": "VA"
+	},
+	{
+		"name": "United States",
+		"code": "US"
+	},
+	{
+		"name": "United Kingdom",
+		"code": "GB"
+	},
+	{
+		"name": "China",
+		"code": "CN"
+	},
+	{
+		"name": "India",
+		"code": "IN"
+	},
+	{
+		"name": "Hong Kong",
+		"code": "HK"
+	}
+]

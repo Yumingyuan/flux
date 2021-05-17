@@ -1,0 +1,30 @@
+.payment {
+  h3 {
+    color: picker(primary, flux-white);
+    margin: 30px 0px;
+  }
+  .referral {
+    color: picker(primary, flux-white);
+    font-size: 14px;
+    background-color: picker(secondary, darkest);
+    padding: 20px 27px;
+    border-radius: 10px;
+    margin-top: 42px;
+    @include flex(flex-start, row);
+    &__radio {
+      margin-bottom: unset;
+    }
+    a {
+      font-weight: fontWeight(bold);
+      text-decoration: none;
+      color: picker(primary, flux-blue);
+    }
+  }
+  .product {
+    padding: 5px;
+    &__img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

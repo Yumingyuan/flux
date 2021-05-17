@@ -1,0 +1,35 @@
+.usuage {
+  text-align: center;
+  &__steps {
+    @include flex(center, column);
+    &-step {
+      &__copy {
+        color: picker(secondary, dark);
+        width: 100%;
+        text-align: center;
+        span {
+          font-weight: fontWeight(medium);
+          font-size: 18px;
+        }
+        &-title {
+          color: picker(primary, flux-white);
+        }
+      }
+    }
+  }
+}
+
+@include breakpoint(lg) {
+  .usuage {
+    text-align: center;
+    // @include flex(center, column);
+    // width: 100%;
+    .title {
+      // width: 447px;
+    }
+    &__steps {
+      @include flex(space-between, row);
+      width: 100%;
+    }
+  }
+}

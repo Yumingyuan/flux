@@ -1,0 +1,6 @@
+// Global Style
+body {
+  @include font(fontFamily(DM-Sans), fontWeight(regular));
+  margin: 0 auto;
+  background-color: picker(primary, flux-bg-black);
+}

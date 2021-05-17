@@ -1,0 +1,51 @@
+// Brand Colors Styles
+$primary: (
+  flux-metallic: #cbd4db,
+  flux-white: #ffffff,
+  flux-blue: #5a78ff,
+  flux-bg-black: #040407,
+  flux-red: #d1387c,
+  flux-blue-red: linear-gradient(269.5deg, #d1387c 0.27%, #5a78ff 100%)
+);
+
+$secondary: (
+  dark: #585858,
+  darker: #272727,
+  darkest: #1a1a1a
+);
+
+// Font
+$font-family: (
+  DM-Sans: (
+    "DM Sans",
+    sans-serif
+  )
+);
+
+// Font Weights
+$font-weights: (
+  regular: 400,
+  medium: 500,
+  bold: 700
+);
+
+$space-multiplier: 4;
+$xy-border: (
+  top: t,
+  bottom: b,
+  left: l,
+  right: r
+);
+
+$breakpoints: (
+  xs: 500px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px
+);
+
+$breakpointsAndDown: (
+  sm-and-down: 576px,
+  md-and-down: 768px,
+  lg-and-down: 992px
+);

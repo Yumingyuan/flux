@@ -1,0 +1,115 @@
+.browse {
+  &__copy {
+    color: picker(primary, flux-white);
+    @include flex(center, column);
+    text-align: center;
+    margin-top: 130px;
+    // padding: 0 5%;
+    &-pretext {
+      background: picker(primary, flux-blue-red);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 16px;
+      font-weight: fontWeight(bold);
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+    }
+    &-herotext {
+      font-size: 30px;
+      font-weight: fontWeight(bold);
+      margin-top: 20px;
+      margin-bottom: 33px;
+      //   width: 359px;
+    }
+  }
+  .clear {
+    padding: 10px;
+    background: #d1387c;
+    border-radius: 5px;
+    color: picker(primary, flux-white);
+    width: auto;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    font-size: 14px;
+  }
+  .filter {
+    // padding: 0 5%;
+    height: 38px;
+    position: relative;
+    &__ls {
+      @include flex(flex-start, row);
+      gap: 15px;
+      height: auto;
+    }
+  }
+  select {
+    background-color: picker(secondary, darker);
+    padding: 10px;
+    width: 100px;
+    font-size: 14px;
+  }
+  &__filter {
+    @include flex(flex-start, row);
+    overflow-x: scroll;
+    width: auto;
+    margin-top: 24px;
+    &-by {
+      background-color: picker(secondary, darker);
+      white-space: nowrap;
+      font-size: 14px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 10px;
+      color: picker(primary, flux-white);
+    }
+    .active {
+      background-color: picker(primary, flux-blue);
+      color: picker(primary, flux-white);
+      font-weight: fontWeight(bold);
+    }
+  }
+}
+
+@include breakpoint(lg) {
+  .browse {
+    &__copy {
+      @include flex(flex-start, column);
+      text-align: left;
+      align-items: flex-start;
+      &-pretext {
+        width: 283px;
+      }
+      &-herotext {
+        font-size: 75px;
+        line-height: 101.7%;
+      }
+    }
+    .filter {
+      @include flex(flex-start, row);
+    }
+    &__filter {
+      @include flex(flex-start, row);
+      overflow-x: unset;
+      width: auto;
+      margin: unset;
+      margin-left: 30px;
+    }
+    .clear {
+      position: absolute;
+      right: 5%;
+    }
+  }
+}
+@include breakpoint(lg) {
+  .product {
+    // width: 278px;
+    height: 300px;
+    .product__img-name {
+      width: 243px;
+    }
+  }
+}

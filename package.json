@@ -1,0 +1,74 @@
+{
+  "name": "fluxCoin",
+  "version": "1.0.0",
+  "description": "FLuxGift with confluxportal",
+  "main": "index.js",
+  "repository": "https://github.com/fluxgift/fluxgift_rebuild.git",
+  "author": "BeardKoda",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "NODE_ENV=production node src/index.js",
+    "start:dev": "NODE_ENV=development node src/index.js",
+    "dev": "NODE_ENV=development nodemon src/index.js",
+    "build:client": "cd client && npm i && npm run build",
+    "eslint": "eslint src/**/*.js --ignore-pattern \"node_modules/\"",
+    "lint": "./node_modules/.bin/eslint ./src",
+    "pretty": "prettier --write '**/*.{js,json}' '!node_modules/**'",
+    "postpretty": "yarn lint --fix"
+  },
+  "dependencies": {
+    "await-to-js": "^2.1.1",
+    "axios": "^0.21.1",
+    "celebrate": "^9.0.1",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "cryptr": "^6.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-http-context": "^1.2.4",
+    "helmet": "^4.4.1",
+    "https": "^1.0.0",
+    "joi": "^17.4.0",
+    "moment": "^2.29.1",
+    "mongoose": "^5.11.17",
+    "mongoose-unique-validator": "^2.0.3",
+    "node-cron": "^2.0.3",
+    "stellar-sdk": "^8.1.1",
+    "toml": "^3.0.0",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "chai": "^4.2.0",
+    "debug": "^4.1.1",
+    "eslint": "^6.6.0",
+    "mocha": "^8.0.1",
+    "mongo-express": "^0.54.0",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run inspect"
+    }
+  },
+  "eslintConfig": {
+    "plugins": [
+      "node"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:node/recommended"
+    ],
+    "rules": {
+      "node/no-unsupported-features/es-syntax": 0,
+      "node/no-unsupported-features/es-builtins": 0
+    },
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": 2018
+    }
+  }
+}
