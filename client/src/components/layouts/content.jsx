@@ -22,13 +22,16 @@ const Content = () => {
         dispatch(confluxAction.isPortalInstalled());
     }, []);
     useEffect(()=>{
+        let allowed = Boolean(window.conflux && window.conflux.isConfluxPortal);
+        // console.log(allowed);
+        if(allowed){
         window.conflux.on('accountsChanged', function (accounts) {
             // Time to reload your interface with accounts[0]!
             if(accounts && accounts.length > 0){
                 console.log('acct-change', accounts);
                 dispatch(confluxAction.restoreSession(accounts));
             }
-          })
+          })}
     })
   return (
     <>
