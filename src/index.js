@@ -15,7 +15,8 @@ const mongo_express_config = require('./mongo_express_config');
 
 const app = express();
 const env = process.env.NODE_ENV || 'development';
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 9090;
+const DIR = '../client/build';
 // global.logger = logger;
 db.load();
 
@@ -26,6 +27,7 @@ if (process.env.NODE_ENV === 'production'){
 const initMiddlewares = () => {
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({ extended: true }));
+	app.use(express.static(path.join(__dirname, DIR)));
 	app.use(helmet());
 	app.use(cors());
 	app.options('*', cors());
@@ -33,6 +35,10 @@ const initMiddlewares = () => {
 const initRoutes = () => {
 	app.use('/v1', routerPath);
 	app.use('/db-admin', mongo_express(mongo_express_config));
+	// Handles any requests that don't match the ones above
+	app.get('/', (req, res) => {
+	  res.sendFile(path.join(__dirname, DIR, '/index.html'));
+	});
 	app.all('**', (req, res)=>{
 		return jsonFailed(res, {}, 'route not found', 404);
 	});

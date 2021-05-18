@@ -8,32 +8,32 @@ caption = 'Buy gift cards for anything under the sun. No account necessary.'
     
 const Landing = () => {
     return(
-      <section class="landing">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="landing__copy">
-                <p class="landing__copy-pretext">
+      <section className="landing">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="landing__copy">
+                <p className="landing__copy-pretext">
                   {pretext}
                 </p>
-                <p class="landing__copy-herotext">
+                <p className="landing__copy-herotext">
                   { herotext }
                 </p>
-                <p class="landing__copy-caption">
+                <p className="landing__copy-caption">
                   { caption }
                 </p>
-                <div class="landing__copy-action">
-                  <button class="landing__copy-action__buy">
+                <div className="landing__copy-action">
+                  <button className="landing__copy-action__buy">
                     Start buying
                   </button>
-                  <button class="landing__copy-action__play ml-5">
+                  <button className="landing__copy-action__play ml-5">
                     
                   </button>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="landing__saly13">
+            <div className="col-md-6">
+              <div className="landing__saly13">
                 <img src={salty13} alt="home" />
               </div>
             </div>

@@ -19,10 +19,10 @@ function json_send(res, data, message, status, status_code, is_error, meta, show
         // data
         // });
     }
-    if(show){
+    // if(show){
         return res.status(status_code).json(d);
-    }
-    return res.status(status_code).json(d.data);
+    // }
+    // return res.status(status_code).json(d.data);
 }
 
 Utils.jsonS = function(express_res, data, message, status_code = 200, meta={}) {

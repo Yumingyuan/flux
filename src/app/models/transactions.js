@@ -7,35 +7,34 @@ const Schema = mongoose.Schema;
 
 const modelSchema = new Schema(
 	{
-		account: {
-			type: String,
-			required: 'Account is required'
-		},
 		amount: {
 			type: String,
 			required: 'amount is required',
 			default: 0.0,
 		},
-		reqData: {
+		amountCFX: {
 			type: String,
+			required: 'amount is required',
 		},
-		resData: {
-			type: String
+		amountCFXUnit: {
+			type: String,
+			required: 'amount is required',
 		},
 		txHash: {
 			type: String
 		},
-		txId: {
+		txData: {
 			type: String
 		},
 		explorerUrl: {
 			type: String
 		},
+		error: {
+			type: String
+		},
 		status: {
 			type: String,
 			enum: [
-				'initiated',
-				'awaiting',
 				'pending',
 				'processing',
 				'sent',

@@ -23,7 +23,7 @@ const makeRequest = async (url, method, payload, headers = {}, meta, reject_unau
         httpsAgent
       })
     );
-  
+    // console.log('respo===>',_err, '\n\n==>??', _res);
     let host = null;
     let responseBody = null;
     if (!_res || !_res.status) {
@@ -49,17 +49,19 @@ const makeRequest = async (url, method, payload, headers = {}, meta, reject_unau
         meta: m
       };
     }
-    if(_res && _res.data.status !== 'success'){
-      const statusCode = 400;
-      console.log('ooloo');
-      return {
-        success: false,
-        message: _res.data.Message,
-        data: _res.data,
-        statusCode,
-        meta: _res.data
-      }
-    };
+    if(_res.data.status){
+      if(_res && _res.data.status !== 'success'){
+        const statusCode = 400;
+        // console.log('ooloo', _res.data);
+        return {
+          success: false,
+          message: _res.data.Message,
+          data: _res.data,
+          statusCode,
+          meta: _res.data
+        }
+      };
+    }
     host = _res.request.res.client.servername;
     responseBody = _res.data.data || _res.data;
     return { success: true, message: 'success', data: responseBody, statusCode: _res.status };

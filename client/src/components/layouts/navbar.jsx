@@ -1,9 +1,25 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
-const connected =false;
+import {useDispatch, useSelector} from 'react-redux';
+import confluxAction from '../../actions/conflux.action';
+// const connected =false;
 
 const Navbar = () => {
-    return (
+  const state = useSelector((state) => state.conflux);
+  const dispatch = useDispatch();
+  // const [connected, setConnected] = useState(false);
+
+  useEffect(()=>{
+    // check
+  },[state]);
+  // console.log(state);
+
+  const ConnectConflux = () => {
+    // console.log("loading...");
+    dispatch(confluxAction.connectPortal());
+  }
+
+  return (
     <div className="navbar">
     <div className="container d-flex justify-content-between align-items-center">
       <Link to="/">
@@ -31,13 +47,13 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            {connected ? <Link to="/account">
+            {state && state.connected ? <Link to="/account">
               Connected
             </Link> :
-            <Link to="/login">
+            <a onClick={ConnectConflux}>
               <button>Connect</button>
-            </Link>}
-          </li>
+            </a>}
+          </li>         
         </ul>
       </div>
       <div className="navbar__rs">

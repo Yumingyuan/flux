@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1c837607.chunk.css",
+    "main.js": "/static/js/main.d3f49930.chunk.js",
+    "main.js.map": "/static/js/main.d3f49930.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
+    "static/js/2.f8ba5b85.chunk.js": "/static/js/2.f8ba5b85.chunk.js",
+    "static/js/2.f8ba5b85.chunk.js.map": "/static/js/2.f8ba5b85.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.23f1c44e2ed9e5f13059d98d851bfd43.js": "/precache-manifest.23f1c44e2ed9e5f13059d98d851bfd43.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.1c837607.chunk.css.map": "/static/css/main.1c837607.chunk.css.map",
+    "static/js/2.f8ba5b85.chunk.js.LICENSE.txt": "/static/js/2.f8ba5b85.chunk.js.LICENSE.txt",
+    "static/media/airtel.svg": "/static/media/airtel.e5774c4b.svg",
+    "static/media/glo.webp": "/static/media/glo.22fd4081.webp",
+    "static/media/styles.scss": "/static/media/landing.bg.00484213.svg",
+    "static/media/mtn.webp": "/static/media/mtn.d7d04a40.webp",
+    "static/media/saly13.png": "/static/media/saly13.87a98bc1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.09b85ec0.js",
+    "static/js/2.f8ba5b85.chunk.js",
+    "static/css/main.1c837607.chunk.css",
+    "static/js/main.d3f49930.chunk.js"
+  ]
+}
