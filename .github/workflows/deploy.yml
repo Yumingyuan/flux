@@ -6,7 +6,7 @@ name: Workflows
 on:
   push:
     branches:
-      - deploy
+      - main
 
 jobs:
   build:
