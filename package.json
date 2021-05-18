@@ -11,7 +11,7 @@
     "start": "NODE_ENV=production node src/index.js",
     "start:dev": "NODE_ENV=development node src/index.js",
     "dev": "NODE_ENV=development nodemon src/index.js",
-    "build:client": "cd client && npm i && npm run build",
+    "build:client": "cd client && yarn && yarn run build",
     "eslint": "eslint src/**/*.js --ignore-pattern \"node_modules/\"",
     "lint": "./node_modules/.bin/eslint ./src",
     "pretty": "prettier --write '**/*.{js,json}' '!node_modules/**'",
