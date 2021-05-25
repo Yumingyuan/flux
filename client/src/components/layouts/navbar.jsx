@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import confluxAction from '../../actions/conflux.action';
+import { LogoImg } from '../../assets/image';
 // const connected =false;
 
 const Navbar = () => {
@@ -20,49 +21,30 @@ const Navbar = () => {
   }
 
   return (
-    <div className="navbar">
-    <div className="container d-flex justify-content-between align-items-center">
-      <Link to="/">
-        <div className="navbar__logo">
-          fluxgift.
-        </div>
-      </Link>
-      {/* <div v-if="sidebarShow" className="mask" @click="sidebarShow = false" /> */}
-      <div className="navbar__links">
-        <div className="navbar__links-search">
-          {/* <ph-magnifying-glass /> */}
-          <div className="input-field">
-            <div className="input-con">
-              <input
-                type="text"
-                placeholder="Search"
-              />
+    <>
+      <a className="skip-link sr" href="#main"></a>
+      <h1 className="sr">Fluxgift</h1>
+      <header className="w-100 pos-f z-depth-4">
+        <nav className="main-wrap pos-r mx-auto wrapper d-flx al-i-c j-c-sb">
+          <div>
+            <div className="logo">
+              <Link to='/'>
+                <img src={LogoImg} alt="Fluxgift Logo"/>
+              </Link>
             </div>
           </div>
-        </div>
-        <ul>
-          <li>
-            <Link to="/browse">
-              Browse Products
-            </Link>
-          </li>
-          <li>
-            {state && state.connected ? <Link to="/account">
-              Connected
-            </Link> :
-            <a onClick={ConnectConflux}>
-              <button>Connect</button>
-            </a>}
-          </li>         
-        </ul>
-      </div>
-      <div className="navbar__rs">
-        <div className="navbar__rs-menu">
-            {/* <hamburger /> */}
-        </div>
-      </div>
-    </div></div>
-    )
+          
+          <div className="">
+            <ul className="none d-flx al-i-c">
+              <li className="prefix suffix is-even-wider show-mediumup"><a href="#faqs" className="nav-link">Browse Product</a></li>
+              { state.connected ? <li className="suffix is-even-wider"><button className="btn btn-transparent suffix">Connected</button></li> :
+              <li className="suffix is-even-wider"><button className="btn btn-transparent suffix" onClick={ConnectConflux}>Connect</button></li>}
+            </ul>
+          </div>
+        </nav>
+      </header>
+    </>
+  )
 }
 
 export default Navbar;

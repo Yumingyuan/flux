@@ -1,14 +1,14 @@
 import React from 'react';
-import './assets/css/styles.scss';
+import './assets/css/style.css';
 import Content from './components/layouts/content';
+import MetaHeader from './components/layouts/metaHeader';
 
 function App() {
   return (
-    <div className="__layout">
-      <div style={{overflowX:'hidden'}}>
-          <Content />
-        </div>
-      </div>
+    <>
+        <MetaHeader />
+        <Content />
+    </>
   );
 }
 

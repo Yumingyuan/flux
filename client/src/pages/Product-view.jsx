@@ -22,11 +22,9 @@ const ProductView = () => {
     },[]);
 
     return (
-        <section className="productView mt-10">
-            <div className="container mt-10">
-                {!loading && product && <ProductDetail product={product}/> }
-            </div>
-        </section>
+        <main className="w-100 wrapper pos-r hide-flow-x">
+            {!loading && product && <ProductDetail product={product}/> }
+        </main>
     )
 }
 export default ProductView;

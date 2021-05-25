@@ -1,0 +1,78 @@
+// 
+    // Base
+
+    // @package cns
+    // @author  Tonye Dickson <itztonye@gmail.com>
+
+@font-face
+  font-family: 'body'
+  src: url( '../fonts/body.ttf' )
+@font-face
+  font-family: 'heading'
+  src: url( '../fonts/heading.ttf' )
+
+// Resets
+html
+    font-size:          $basefont
+    overflow-x:         hidden // fix unintended left scroll
+    // https://stackoverflow.com/questions/8635799/overflow-xhidden-still-can-scroll
+
+*,
+*::before,
+*::after
+    box-sizing:         border-box
+
+body
+    margin:             0
+    font-family:        $bodyfont
+    font-size:          $basefont - 1
+    line-height:        $defaultlh
+    color:              #777777
+    background-color:   #040407
+
+p
+    margin:             0
+    margin-bottom:      $basefont
+    &:last-child
+        margin-bottom:  0
+
+a
+    text-decoration:        none
+    color:                  #D0DCE4
+    transition:             color 0.32s ease
+    line-height:            1.2rem
+    &:active, &:focus, &:hover
+        text-decoration:    none
+
+        
+.sub-container a.no-decor
+    text-decoration:        none
+
+audio, canvas, img, video
+    display:            block
+    max-width:          unset
+
+img
+    width:              100%
+    object-fit:         cover
+
+svg
+    pointer-events:     none
+    vertical-align:     middle
+
+ul, ol
+    &.none
+        padding-left:   0
+        list-style:     none
+        margin:         0
+figure
+    margin:             0 !important
+
+
+// Buttons, Inputs, 
+button
+    border:             none
+    background:         none
+    padding:            0
+button:hover
+    cursor:             pointer

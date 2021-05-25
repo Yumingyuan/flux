@@ -9,7 +9,7 @@ import confluxAction from '../../actions/conflux.action';
 const ProductDetail = ({ product }) => {
     const state = useSelector((state) => state.conflux);
     const dispatch = useDispatch();
-    const { name, image, id, code, amount } = product;
+    const { name, image, id, code, amount, description } = product;
     const {
       values,
       touched,
@@ -33,12 +33,18 @@ const ProductDetail = ({ product }) => {
           return createTx(values);
         }
     });
-    console.log(state);
+    // console.log(state);
     
     const makePayment = (data) => {
         // console.log('going...', data);
         dispatch(confluxAction.sendTx(data, setSubmitting));
     }
+
+    const ConnectConflux = () => {
+      // console.log("loading...");
+      dispatch(confluxAction.connectPortal());
+    }
+  
 
     const createTx = async (values) => {
         try{
@@ -53,90 +59,54 @@ const ProductDetail = ({ product }) => {
     };
 
     return (
-        <section className="row product-section">
-            <div className="col-md-6" style={{background:'white', padding: '0 20px'}}>
-                <div className="product__img" style={{ backgroundImage: `url(${image})`, backgroundRepeat:'no-repeat', backgroundSize:'contain', backgroundPosition:'center' }}>
-                {/* <img src={image} /> */}
+        <div className="maxwidth-sl wrapper-y will-grow-more min-height-100-vh mx-auto clearfix">
+          <div className="left-50 wrapper-y will-grow show-mediumup">
+            <img src={image} alt="" className="desired-height h-100 z-depth-2"/>
+          </div>
+          <div className="pos-r z-depth-3 wrapper will-grow right-50 ">
+            <form onSubmit={handleSubmit}>
+              <h2>{name}</h2>
+              <p>{description} No account required. Start living on crypto.</p>
+  
+              <div className="wrapper-y form-area">
+                <div className="input-group">
+                  <label htmlFor="customer">Customer</label>
+                  <input id="customer" type="text" 
+                    value={values.customer}
+                    onBlur={handleBlur}
+                    onChange={handleChange} />
+                    {errors.customer && touched.customer ? (
+                        <p style={{color:'red', opacity:0.7}}>*{errors.customer}</p>
+                    ) : null}
                 </div>
-            </div>
-            <div className="col-md-6">
-                <div className="product__details">
-                    <div className="product__details-title">
-                        <h4>{name}</h4>
-                        <button><ph-heart /></button>
-                    </div>
-                    <div className="product__details-content">
-                        Use CFX to pay buy {name} Instant delivery.
-                        No account required. Start living on crypto!
-                    </div>
-
-                    <form onSubmit={handleSubmit}>
-                        {/* <ul className="product__details-prices mt-10">
-                            {[1,2,3,4,5].map((price, i) => 
-                            <li key={i}>
-                                <input type="radio" className="mr-2"/>
-                                <div className="product__details-prices__price">
-                                    <span>5000-V-Bucks</span>
-                                    <span className="value">0.00071487 USD</span>
-                                </div>
-                            </li>)}
-                        </ul> */}
-                        <div className="product__details-prices mt-10">
-                            <div className="input-field">
-                                <p>Customer</p>
-                                <div className="input-con">
-                                    <input type="text" placeholder="customer"
-                                        name="customer"
-                                        value={values.customer}
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        />
-                                </div>
-                                {errors.customer && touched.customer ? (
-                                <>
-                                    <p style={{color:'red', opacity:0.7}}>*{errors.customer}</p>
-                                </>
-                                ) : null}
-                            </div>
-                            <div className="input-field">
-                                <p>Amount</p>
-                                <div className="input-con">
-                                    <input name="amount" type="number" placeholder="500" 
-                                        value={values.amount}
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}/>
-                                </div>
-                                {errors.amount && touched.amount ? (
-                                <>
-                                    <p style={{color:'red', opacity:0.7}}>*{errors.amount}</p>
-                                </>
-                                ) : null}
-                            </div>
-                            <div className="input-field">
-                                <p>Note</p>
-                                <div className="input-con">
-                                    <input name="note" type="text" placeholder="Buying airtime for john doe" 
-                                        value={values.note}
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}/>
-                                </div>
-                                {errors.note && touched.note ? (
-                                <>
-                                    <p style={{color:'red', opacity:0.7}}>*{errors.note}</p>
-                                </>
-                                ) : null}
-                            </div>
-                        </div>
-                        <div className="buttons">
-                            <button className="add-cart mt-10 btn--big" type="submit" disabled={isSubmitting || !state.confluxInstalled } >
-                                {!state.confluxInstalled ? 'Please Install Conflux Portal to Purchase': !state.connected ? 'Please Connect to Conflux Portal' : !isSubmitting ? 'Purchase' : 'Please Wait...'}
-                                {/* <ph-shopping-cart-simple className="ml-5" size="16" /> */}
-                            </button>
-                        </div>
-                    </form>
+                <div className="input-group">
+                  <label htmlFor="amount">Amount</label>
+                  <input id="amount" type="text" 
+                    value={values.amount}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    />
+                    {errors.amount && touched.amount ? (
+                        <p style={{color:'red', opacity:0.7}}>*{errors.amount}</p>
+                    ) : null}
                 </div>
-            </div>
-        </section>
+                <div className="input-group">
+                  <label htmlFor="note">Note</label>
+                  <input id="note" type="text" 
+                    value={values.note}
+                    onBlur={handleBlur}
+                    onChange={handleChange} />
+                </div>
+                <div className="py-2">
+                 {state.connected ? <button className="btn btn-primary w-100" type="submit" disabled={isSubmitting || !state.confluxInstalled } >
+                      {!isSubmitting ? 'Start Buying' : 'Please Wait...'}</button> :
+                  <button className="btn btn-primary w-100" onClick={ConnectConflux} disabled={isSubmitting || !state.confluxInstalled } >
+                                {!state.confluxInstalled ? 'Please Install Conflux Portal to Purchase': !state.connecting ? 'Please Connect to Conflux Portal' : 'Please Wait....'}</button>}
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
     )
 }
 

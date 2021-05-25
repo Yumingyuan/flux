@@ -1,46 +1,31 @@
 import React from 'react';
-import { salty13 } from '../../assets/image';
-// import '../../assets/css/components/home/_landing.scss';
+import { HeroBanner } from '../../assets/image';
 
 const pretext = 'LIVE ON CRYPTO',
 herotext = 'Make your daily payments with crypto',
-caption = 'Buy gift cards for anything under the sun. No account necessary.'
-    
-const Landing = () => {
-    return(
-      <section className="landing">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="landing__copy">
-                <p className="landing__copy-pretext">
-                  {pretext}
-                </p>
-                <p className="landing__copy-herotext">
-                  { herotext }
-                </p>
-                <p className="landing__copy-caption">
-                  { caption }
-                </p>
-                <div className="landing__copy-action">
-                  <button className="landing__copy-action__buy">
-                    Start buying
-                  </button>
-                  <button className="landing__copy-action__play ml-5">
-                    
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="landing__saly13">
-                <img src={salty13} alt="home" />
-              </div>
-            </div>
+caption1 = 'Buy gift cards for anything under the sun.',
+caption2 = 'No account necessary.',
+buyText = 'Start Buying'
+
+const Landing = () =>{
+  return(
+    <div className="main-wrap wrapper-y will-grow-more min-height-100-vh  mx-auto d-flx flex-dir-col j-c-c al-i-fs">
+        <div className="pos-r z-depth-3 wrapper-y will-grow maxwidth-tb">
+          <p>{pretext}</p>
+          <h1 className="maxwidth-tb fw-bold">{herotext}</h1>
+          <p className="maxwidth-sm smalltext wrapper-y">
+            {caption1}
+            <br/>
+            {caption2}
+          </p>
+  
+          <div className="">
+            <a href="#"><button className="btn btn-primary prefix">{buyText}</button></a>
           </div>
+          <img src={HeroBanner} alt="" className="main-hero-image z-depth-2" />
         </div>
-      </section>
-    )
+      </div>
+  )
 }
 
 export default Landing;
