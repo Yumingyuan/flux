@@ -1,5 +1,6 @@
 import React from "react";
 import {Helmet} from "react-helmet";
+import { FavIcon16, FavIcon32, FavIconApp, LogoImg, OgImgLogo } from "../../assets/image";
 
 const MetaHeader = () => {
     return (
@@ -10,19 +11,19 @@ const MetaHeader = () => {
             <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href="images/favicons/apple-touch-icon.png"
+            href={FavIconApp}
             />
             <link
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="fimages/avicons/favicon-32x32.png"
+            href={FavIcon32}
             />
             <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="images/favicons/favicon-16x16.png"
+            href={FavIcon16}
             />
     
             <meta name="msapplication-TileColor" content="#da532c" />
@@ -54,7 +55,7 @@ const MetaHeader = () => {
             
             <meta property="og:title" content="Fluxgift" />
             <meta property="og:url" content="fluxgift.com" />
-            <meta property="og:image" content="images/og-image.png" />
+            <meta property="og:image" content={OgImgLogo} />
             <meta property="og:description" content="Make your daily payments with crypto."/>
             <meta property="og:locale" content="en_GB" />
             <meta property="og:type" content="Application" />
@@ -62,7 +63,7 @@ const MetaHeader = () => {
             <link rel="canonical" href="fluxgift.com" />
             <meta property="og:url" content="fluxgift.com" />
             <meta property="og:site_name" content="Fluxgift" />
-            <meta property="og:image" content="images/logo.svg" />
+            <meta property="og:image" content={LogoImg} />
             <script type="application/ld+json">
             {`
                 "description": "Send money across the world with a click of
