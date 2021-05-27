@@ -1,8 +1,8 @@
 import { confluxConstants } from '../constant';
 import { AlertResp } from '../helpers/alert';
 import { updateTx } from '../service/api';
-const allowedNetowrk = 1;
-const adminAccount = 'cfxtest:aak2zfppgz9xe0w4tnfcts7cwamwv53e36hk1f8ceg';
+const allowedNetowrk = 2;
+const adminAccount = 'cfx:aas3ew9nv1ck3kunrtvhe9act9ve9mhvspt4a2nchc';
 export default {
   connectPortal,
   isPortalInstalled,
