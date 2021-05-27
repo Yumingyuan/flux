@@ -5,10 +5,9 @@ import ProductView from "./pages/Product-view";
 
 const publicRoutes = [
   { path: '/', name: 'Home', component: Home, exact:true},
-  { path: '/browse', name: 'Browse Products', component: Products, exact:true},
-  { path: '/product/:id', name: 'Buy product', component: ProductView, exact:true},
+  { path: '/browse', name: 'Buy product', component: ProductView, exact:true},
+  // { path: '/browse', name: 'Browse Products', component: Products, exact:true},
   { path: '**', name: '404', component: Page404, }
-//   { path: 'create-account', name: 'Create Account', component: CreateAccount },
 ];
 
 const routes = {

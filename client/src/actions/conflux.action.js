@@ -14,13 +14,19 @@ function connectPortal(setSubmitting) {
   return async (dispatch) => {
     // console.log('here');
     dispatch(request());
-    await window.conflux.enable();
-    const conflux = await window.conflux.send("cfx_requestAccounts");
-    console.log(conflux);
-    if(conflux && conflux.length > 0){
-      return dispatch(success({account:conflux}));
-    } else{
-      return dispatch(failure({error: conflux}))
+    let allowed = Boolean(window.conflux && window.conflux.isConfluxPortal);
+    console.log(allowed);
+    if(allowed){
+      await window.conflux.enable();
+      const conflux = await window.conflux.send("cfx_requestAccounts");
+      console.log(conflux);
+      if(conflux && conflux.length > 0){
+        return dispatch(success({account:conflux}));
+      } else{
+        return dispatch(failure({error: conflux}))
+      }
+    }else{
+      return dispatch(failureTOconnect({error: "Please Install conflux portal"}))
     }
   };
 
@@ -32,6 +38,9 @@ function connectPortal(setSubmitting) {
   }
   function failure(error) {
     return { type: confluxConstants.CONNECT_FAILED, error };
+  }
+  function failureTOconnect(error) {
+    return { type: confluxConstants.CONNECT_NOT_ALLOWED, error };
   }
 }
 
@@ -91,7 +100,7 @@ function sendTx(data, setSubmitting){
           // The result varies by method, per the JSON RPC API.
           // For example, this method will return a transaction hash on success.
           console.log(result);
-          updateTx(data._id, 'success', result.txHash, JSON.stringify(result), 'null');
+          updateTx(data._id, 'success', result, JSON.stringify(result), 'null');
           AlertResp('Transaction Successful', 'transaction sent successful', 'success', 'close');
           setSubmitting(false);
         })
@@ -103,8 +112,9 @@ function sendTx(data, setSubmitting){
           // Like a typical promise, returns an error on rejection.
         })
     }else{
-      // console.log(conflux.networkVersion, accounts);
-      AlertResp('Info', 'Please Switch to Test Network!!!', 'info', 'close');
+      console.log(conflux.networkVersion, accounts);
+      if(conflux.networkVersion!==allowedNetowrk) AlertResp('Info', 'Please Switch to Test Network!!!', 'info', 'close');
+      if(!accounts) AlertResp('Info', 'Please Connect to Conflux Wallet!!!', 'info', 'close');
       setSubmitting(false);
     }
   }

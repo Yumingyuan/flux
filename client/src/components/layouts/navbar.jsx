@@ -37,8 +37,10 @@ const Navbar = () => {
           <div className="">
             <ul className="none d-flx al-i-c">
               <li className="prefix suffix is-even-wider show-mediumup"><a href="#faqs" className="nav-link">Browse Product</a></li>
-              { state.connected ? <li className="suffix is-even-wider"><button className="btn btn-transparent suffix">Connected</button></li> :
-              <li className="suffix is-even-wider"><button className="btn btn-transparent suffix" onClick={ConnectConflux}>Connect</button></li>}
+              { state.confluxInstalled ?
+               state.connected ? <li className="suffix is-even-wider"><button className="btn btn-transparent suffix">Connected</button></li> :
+              <li className="suffix is-even-wider"><button className="btn btn-transparent suffix" onClick={ConnectConflux}>Connect</button></li> : 
+              <li className="suffix is-even-wider"><button className="btn btn-transparent suffix" onClick={console.log("install")}>Install Conflux Portal</button></li> }
             </ul>
           </div>
         </nav>

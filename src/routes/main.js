@@ -2,9 +2,21 @@
 
 const { celebrate } = require('celebrate');
 const controller = require('../app/adaptors/controller');
-const { getBanks, create, updateTx } = require('../app/controllers/tx.controller');
+const { getBanks, create, updateTx, getServices, getMainServices } = require('../app/controllers/tx.controller');
 const { createTxSchema, updateTxSchema } = require('../app/requests/main.request');
 const router = require('express').Router();
+
+// fetch categories
+router.get(
+	'/services', 
+	getServices
+);
+
+// get main services
+router.get(
+    '/main/cat',
+    getMainServices
+)
 
 // withdraw route
 router.post(

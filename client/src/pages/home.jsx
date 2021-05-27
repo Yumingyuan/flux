@@ -3,11 +3,7 @@ import { Airtel, BGImg, GLOLogo, MTN } from '../assets/image';
 import HowItWorks from '../components/home/howItWorks';
 import Landing from '../components/home/landing';
 import Product from '../components/products/product';
-const products = [
-    {id: 1, name: 'MTN VTU top Up', image: MTN},
-    {id: 2, name: 'Airtel Nigeria', image: Airtel},
-    {id:3, name: 'Glo Nigeria', image: GLOLogo },
-];
+import { products }from '../helpers/helpers';
 
 const Home = () => {
     return(
@@ -25,7 +21,7 @@ const Home = () => {
                 <div className="grid is-multi-col mostly-3">
                     {products && products.map((p, i) => 
                         <div key={i} className="pos-r desired-height-3qtr d-flx flex-dir-col j-c-fe rad-s">
-                            <Product id={p.id} name={p.name} image={p.image} />
+                            <Product id={p.id} name={p.name} image={p.image} code={p.code} />
                         </div>
                     )}
                 </div>

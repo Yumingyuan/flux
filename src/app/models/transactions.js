@@ -58,6 +58,51 @@ const modelSchema = new Schema(
 		},
 		respoData:{
 			type: String
+		},
+		customer: {
+			type: String,
+			required: 'Customer is required'
+		},
+		serviceType: {
+			type: String,
+			required: 'Service Type is required'
+		},
+		billerName: {
+			type: String,
+			required: 'Biller\'s Name is required'
+		},
+		billerType: {
+			type: String,
+			required: 'Biller\'s Type is required'
+		},
+		country: {
+			type: String,
+			required: 'Country is required'
+		},
+		is_airtime: {
+			type: Boolean
+		},
+		fee: {
+			type: String,
+			required: 'Fee is required'
+		},
+		commission: {
+			type: String,
+			required: 'Commission is required'
+		},
+		itemCode: {
+			type: String,
+			required: 'Item\'s Code is required'
+		},
+		item: {
+			type: String,
+			required: 'Item is required'
+		},
+		cryptoAmount: {
+			type: String
+		},
+		symbol: {
+			type: String
 		}
 	},
 	{

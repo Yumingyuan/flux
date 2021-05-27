@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import {useDispatch, useSelector} from 'react-redux';
 
 import { productSchema } from '../../helpers/schemas/formSchema';
 import { newTx } from '../../service/api';
 import confluxAction from '../../actions/conflux.action';
+import { DefMainImg } from '../../assets/image';
+const countries = [
+  { label: 'Nigeria', value:'NG' },
+  { label: 'Ghana', value:'GH' },
+]
 
-const ProductDetail = ({ product }) => {
+const defaultImage = DefMainImg;
+
+const ProductDetail = ({ item, services }) => {
     const state = useSelector((state) => state.conflux);
     const dispatch = useDispatch();
-    const { name, image, id, code, amount, description } = product;
     const {
       values,
       touched,
@@ -19,20 +25,29 @@ const ProductDetail = ({ product }) => {
       handleSubmit,
       isSubmitting,
       setSubmitting,
-      // resetForm,
+      setFieldValue,
+      resetForm
     } = useFormik({
       initialValues: {
-        product: name,
+        product: item ? item.value : '',
+        country: 'NG',
         customer: '',
         amount: '',
         note:''
       },
       validationSchema: productSchema,
       onSubmit(values) {
-        //   console.log('valll===>',values);
-          return createTx(values);
-        }
+        // console.log('valll===>',values);
+        return createTx(values);
+      }
     });
+
+    // console.log('item===>', item);
+    useEffect(()=>{
+      if(item && item.value){
+        setFieldValue('product', item.value, false);
+      }
+    },[item])
     // console.log(state);
     
     const makePayment = (data) => {
@@ -47,28 +62,50 @@ const ProductDetail = ({ product }) => {
   
 
     const createTx = async (values) => {
-        try{
+      try{
+        await ConnectConflux();
+        if(state.connected){
           let r = await newTx(values);
-            // console.log(r);
-            if(r.status=='success'){
-                return makePayment(r.data);  
-            }
-        }catch(err){
-            console.log(err);  
+          if(r.status=='success'){
+            makePayment(r.data); 
+            resetForm();
+            return;
+          }
         }
+      }catch(err){
+        console.log(err);  
+      }
     };
 
     return (
         <div className="maxwidth-sl wrapper-y will-grow-more min-height-100-vh mx-auto clearfix">
           <div className="left-50 wrapper-y will-grow show-mediumup">
-            <img src={image} alt="" className="desired-height h-100 z-depth-2"/>
+            <img src={defaultImage} alt="" className="desired-height h-100 z-depth-2"/>
           </div>
           <div className="pos-r z-depth-3 wrapper will-grow right-50 ">
             <form onSubmit={handleSubmit}>
-              <h2>{name}</h2>
-              <p>{description} No account required. Start living on crypto.</p>
+              <h2>{'Select Service'}</h2>
+              <p>No account required. Start living on crypto.</p>
   
               <div className="wrapper-y form-area">
+                <div className="input-group">
+                  <label htmlFor="product">Service</label>
+                  <select id="product" type="text" value={values.product} onBlur={handleBlur} onChange={handleChange}>
+                    {services.map((r, i) => <option key={i} value={r.value}>{r.label}</option>)}
+                  </select>
+                  {errors.product && touched.product ? (
+                      <p style={{color:'red', opacity:0.7}}>*{errors.product}</p>
+                  ) : null}
+                </div>
+                <div className="input-group">
+                  <label htmlFor="country">Country</label>
+                  <select id="country" type="text" value={values.country} onBlur={handleBlur} onChange={handleChange}>
+                    {countries.map((r, i) => <option key={i} value={r.value}>{r.label}</option>)}
+                  </select>
+                  {errors.country && touched.country ? (
+                      <p style={{color:'red', opacity:0.7}}>*{errors.country}</p>
+                  ) : null}
+                </div>
                 <div className="input-group">
                   <label htmlFor="customer">Customer</label>
                   <input id="customer" type="text" 

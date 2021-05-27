@@ -1,0 +1,24 @@
+{
+	"regions": [
+		{
+			"id": 1,
+			"name": "Canada",
+			"image_url": "https://s3-us-west-2.amazonaws.com/staticimageskiind/flags/CA@3x.png"
+		},
+		{
+			"id": 2,
+			"name": "USA",
+			"image_url": "https://s3-us-west-2.amazonaws.com/staticimageskiind/flags/US@3x.png"
+		},
+		{
+			"id": 3,
+			"name": "Global",
+			"image_url": "https://s3-us-west-2.amazonaws.com/staticimageskiind/flags/GLBL@3x.png"
+		},
+		{
+			"id": 4,
+			"name": "Australia",
+			"image_url": "https://s3-us-west-2.amazonaws.com/staticimageskiind/flags/AU@3x.png"
+		}
+	]
+}

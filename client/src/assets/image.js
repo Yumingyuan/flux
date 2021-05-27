@@ -12,6 +12,7 @@ import favIconApple from './images/favicons/apple-touch-icon.png';
 import favIcon32 from './images/favicons/favicon-32x32.png';
 import favIcon16 from './images/favicons/favicon-16x16.png';
 import ogLogoImg from './images/og-image.png';
+import mainImg from './images/11.png';
 
 export const salty13 = saImg;
 export const MTN = mtnLogo;
@@ -27,3 +28,4 @@ export const FavIcon32 = favIcon32;
 export const FavIcon16 = favIcon16;
 export const FavIconApp = favIconApple;
 export const OgImgLogo = ogLogoImg
+export const DefMainImg = mainImg;
