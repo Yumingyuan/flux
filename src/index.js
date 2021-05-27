@@ -27,8 +27,9 @@ if (process.env.NODE_ENV === 'production'){
 const initMiddlewares = () => {
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({ extended: true }));
+	// app.use(helmet());
 	app.use(express.static(path.join(__dirname, DIR)));
-	app.use(helmet());
+	// app.use(express.static(path.join(__dirname, "../client/build/static")));
 	app.use(cors());
 	app.options('*', cors());
 }
@@ -36,12 +37,12 @@ const initRoutes = () => {
 	app.use('/v1', routerPath);
 	app.use('/db-admin', mongo_express(mongo_express_config));
 	// Handles any requests that don't match the ones above
-	app.get('*', (req, res) => {
+	app.get('/*', (req, res) => {
 	  res.sendFile(path.join(__dirname, DIR, '/index.html'));
 	});
-	// app.all('**', (req, res)=>{
-	// 	return jsonFailed(res, {}, 'route not found', 404);
-	// });
+	app.all('**', (req, res)=>{
+		return jsonFailed(res, {}, 'route not found', 404);
+	});
 }
 
 const initErrorHandlers = () => {

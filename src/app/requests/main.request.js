@@ -20,7 +20,14 @@ const updateTxSchema = {
 	})
 }
 
+const fetchServiccSchema = {
+	query: Joi.object().keys({
+		country: Joi.string().required()
+	})
+}
+
 module.exports ={
     createTxSchema,
-    updateTxSchema
+    updateTxSchema,
+	fetchServiccSchema
 };

@@ -9,18 +9,20 @@ const config = require("../../helpers/config");
 const txController = {
     getServices:async(req, res)=>{
         // get All services From Flutterwave
-        let response = config.PROD? flutteProd:flutteProd;
+        let country = req.query.country;
+        let response = config.PROD? flutteProd:flutteData;
         // console.log(response, config.PROD);
-        let data = response.data.map(({biller_name, short_name, item_code}) => { return {label:`${short_name} (${biller_name})`, value:item_code}; });
+        let up = response.data.filter((r)=>r.country===country);
+        let data = up.map(({biller_name, name, short_name}) => { return {label:`${name} (${biller_name})`, value:short_name}; });
         return jsonS(res, data, 'success', 200);
     },
 
     getMainServices:async(req, res)=>{
         let response = config.PROD? flutteProd:flutteData;
-        // console.log(response, config.PROD);
         let up = response.data.slice(0, 3);
-        let data = up.map(({biller_name, short_name, item_code}) => { 
-            return {label:`${short_name} (${biller_name})`, value:item_code}; 
+        // console.log(up, config.PROD);
+        let data = up.map(({biller_name, name, short_name, country}) => { 
+            return {label:`${name} (${biller_name})`, value:short_name, country: country}; 
         });
         return jsonS(res, data, 'success', 200);
     },

@@ -1,7 +1,8 @@
 import { confluxConstants } from '../constant';
 import { AlertResp } from '../helpers/alert';
 import { updateTx } from '../service/api';
-const allowedNetowrk = 2;
+const allowedNetowrk = 1029;
+const DEV = false;
 const adminAccount = 'cfx:aas3ew9nv1ck3kunrtvhe9act9ve9mhvspt4a2nchc';
 export default {
   connectPortal,
@@ -15,7 +16,7 @@ function connectPortal(setSubmitting) {
     // console.log('here');
     dispatch(request());
     let allowed = Boolean(window.conflux && window.conflux.isConfluxPortal);
-    console.log(allowed);
+    // console.log(allowed);
     if(allowed){
       await window.conflux.enable();
       const conflux = await window.conflux.send("cfx_requestAccounts");
@@ -76,7 +77,7 @@ function isPortalInstalled(){
   }
 }
 
-function sendTx(data, setSubmitting){
+function sendTx(data, setSubmitting, resetForm){
   // const { acctRec, amount } = data;
   const conflux = window.conflux;
   console.log(data)
@@ -103,6 +104,7 @@ function sendTx(data, setSubmitting){
           updateTx(data._id, 'success', result, JSON.stringify(result), 'null');
           AlertResp('Transaction Successful', 'transaction sent successful', 'success', 'close');
           setSubmitting(false);
+          resetForm();
         })
         .catch(function (error) {
           console.log(error);
@@ -112,8 +114,8 @@ function sendTx(data, setSubmitting){
           // Like a typical promise, returns an error on rejection.
         })
     }else{
-      console.log(conflux.networkVersion, accounts);
-      if(conflux.networkVersion!==allowedNetowrk) AlertResp('Info', 'Please Switch to Test Network!!!', 'info', 'close');
+      console.log(conflux.networkVersion, allowedNetowrk, accounts);
+      if(conflux.networkVersion!==allowedNetowrk) AlertResp('Info', `Please Switch to ${ DEV ? 'Test': 'Tethys'} Network!!!`, 'info', 'close');
       if(!accounts) AlertResp('Info', 'Please Connect to Conflux Wallet!!!', 'info', 'close');
       setSubmitting(false);
     }
