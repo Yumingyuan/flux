@@ -36,7 +36,7 @@ const Navbar = () => {
           
           <div className="">
             <ul className="none d-flx al-i-c">
-              <li className="prefix suffix is-even-wider show-mediumup"><a href="#faqs" className="nav-link">Browse Product</a></li>
+              <li className="prefix suffix is-even-wider show-mediumup"><Link to="browse" className="nav-link">Browse Product</Link></li>
               { state.confluxInstalled ?
                state.connected ? <li className="suffix is-even-wider"><button className="btn btn-transparent suffix">Connected</button></li> :
               <li className="suffix is-even-wider"><button className="btn btn-transparent suffix" onClick={ConnectConflux}>Connect</button></li> : 

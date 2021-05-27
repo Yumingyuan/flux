@@ -36,12 +36,12 @@ const initRoutes = () => {
 	app.use('/v1', routerPath);
 	app.use('/db-admin', mongo_express(mongo_express_config));
 	// Handles any requests that don't match the ones above
-	app.get('/', (req, res) => {
+	app.get('*', (req, res) => {
 	  res.sendFile(path.join(__dirname, DIR, '/index.html'));
 	});
-	app.all('**', (req, res)=>{
-		return jsonFailed(res, {}, 'route not found', 404);
-	});
+	// app.all('**', (req, res)=>{
+	// 	return jsonFailed(res, {}, 'route not found', 404);
+	// });
 }
 
 const initErrorHandlers = () => {
@@ -54,7 +54,6 @@ const initErrorHandlers = () => {
 		let msg = messages.map((er)=>{ return {[er.path]: er.message.replace(/["]+/g, '')}})
       	return jsonFailed(res, msg, 'error', 400);
     }
-
     return next(err);
   });
   app.use(errors());
