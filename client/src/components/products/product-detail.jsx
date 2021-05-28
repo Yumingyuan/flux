@@ -35,7 +35,7 @@ const ProductDetail = ({ code, country }) => {
         country: country ? country : 'NG',
         customer: '',
         amount: '',
-        note:''
+        note:'Tx from fluxGift'
       },
       validationSchema: productSchema,
       onSubmit(values) {
@@ -139,13 +139,13 @@ const ProductDetail = ({ code, country }) => {
                         <p style={{color:'red', opacity:0.7}}>*{errors.amount}</p>
                     ) : null}
                 </div>
-                <div className="input-group">
+                {/* <div className="input-group">
                   <label htmlFor="note">Note</label>
                   <input id="note" type="text" 
                     value={values.note}
                     onBlur={handleBlur}
                     onChange={handleChange} />
-                </div>
+                </div> */}
                 <div className="py-2">
                  {state.connected ? <button className="btn btn-primary w-100" type="submit" disabled={isSubmitting || !state.confluxInstalled } >
                       {!isSubmitting ? 'Start Buying' : 'Please Wait...'}</button> :
