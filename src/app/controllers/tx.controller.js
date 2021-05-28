@@ -34,7 +34,7 @@ const txController = {
         let ItemCode = product;
         let response = config.PROD? flutteProd:flutteData;
         let type = response.data.filter((dat) => {
-            return ItemCode===dat.item_code;
+            return ItemCode===dat.short_name;
         })[0];
         let newTx = await models.transaction.create({
             billerName: type.biller_name,
