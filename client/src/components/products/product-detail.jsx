@@ -9,7 +9,7 @@ import { DefMainImg } from '../../assets/image';
 
 const countries = [
   { label: 'Nigeria', value:'NG' },
-  { label: 'Ghana', value:'GH' },
+  // { label: 'Ghana', value:'GH' },
 ]
 
 const defaultImage = DefMainImg;

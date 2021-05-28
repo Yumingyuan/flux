@@ -14,7 +14,7 @@ const convertNGNtoCFX = async (amount) => {
     const pp = await getCFXprice();
     const usdCFx = pp.usd;
     const usdNGN =  amount/config.USD;
-    console.log(usdCFx, usdNGN, amount, config.USD);
+    // console.log(usdCFx, usdNGN, amount, config.USD);
     const amt =  usdNGN/usdCFx;
     const unit =  await convertUnit('CFX', 'Drip', amt.toString(10));
     var a = web3.utils.toHex(unit);

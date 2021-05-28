@@ -1,6 +1,6 @@
 const config = {
 	PROD: process.env.PROD || false,
-    USD: process.env.USD || '500',
+    USD: process.env.USD || '400',
 	JWT_SECRET: process.env.JWT_SECRET,
 	flutterURL: process.env.FLUTTER_URL || 'https://api.flutterwave.com/v3',
 	flutterKEY: process.env.FLUTTER_KEY,
