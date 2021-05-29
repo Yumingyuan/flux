@@ -2,28 +2,40 @@ import React, { useEffect, useState } from 'react';
 // import userAction from '../actions/userAction';
 import routes from '../../routes';
 import { Router, Switch, Route, Redirect } from 'react-router-dom';
+import './loading.css';
 // import { useDispatch, useSelector } from 'react-redux';
 import { createBrowserHistory } from 'history';
 // import Page404 from '../../pages/errors/404';
 import Navbar from './navbar';
 import Footer from './footer';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import confluxAction from '../../actions/conflux.action';
+import { AlertResp } from '../../helpers/alert';
 
 export const history = createBrowserHistory();
 
-const Loading = () => {
-  return <h3 className="text-center">loading....</h3>;
+const Loading = ({msg}) => {
+//   return <h3 className="text-center">loading....</h3>;
+    return(
+    <div style={{textAlign:'center', marginTop:'20%'}}>
+        <div className="lds-default">
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+        </div>
+        <p>{msg || 'Loading...'}</p>
+    </div>)
 };
 
 const Content = () => {
+    const [loading, setLoading] = useState(true);
+    const [loadingMSg, setLoadingMsg] = useState('Loading...');
+    const state = useSelector((state) => state.conflux);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(confluxAction.isPortalInstalled());
     }, []);
     useEffect(()=>{
         let allowed = Boolean(window.conflux && window.conflux.isConfluxPortal);
-        // console.log(allowed);
+        // console.log('allowed===>', allowed);
         if(allowed){
         window.conflux.on('accountsChanged', function (accounts) {
             // Time to reload your interface with accounts[0]!
@@ -31,13 +43,32 @@ const Content = () => {
                 console.log('acct-change', accounts);
                 dispatch(confluxAction.restoreSession(accounts));
             }
-          })}
+        })}
     })
+    // console.log(state);
+
+    useEffect(()=>{
+        // console.log('state', state);
+        if(loading && state.confluxInstalled){
+            if(loading && state.connected){
+                setLoading(false);
+            }else if (loading && !state.connected && !state.connecting){
+                setLoadingMsg('Connecting to Conflux Portal...')
+                dispatch(confluxAction.connectPortal());
+            }
+        }
+    }, [state]);
+    if(loading){
+        return <Loading msg={loadingMSg} />
+    }
+    if(!loading && !state.confluxInstalled){
+
+    }
   return (
     <>
     <Router history={history}>
         <Navbar />
-        <React.Suspense fallback={Loading}>
+        {!loading && <React.Suspense fallback={Loading}>
             <Switch>
             {routes.publicRoutes.map((route, idx) => {
                 if (route.redirect) {
@@ -60,7 +91,7 @@ const Content = () => {
                 );
             })}
             </Switch>
-        </React.Suspense>
+        </React.Suspense>}
         <Footer/>
     </Router>
     </>

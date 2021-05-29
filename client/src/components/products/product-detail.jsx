@@ -17,6 +17,7 @@ const defaultImage = DefMainImg;
 const ProductDetail = ({ code, country }) => {
     const state = useSelector((state) => state.conflux);
     const [services, setServices] = useState([]);
+    const [labelName, setLabelName] = useState('customer');
     const dispatch = useDispatch();
     const {
       values,
@@ -50,6 +51,7 @@ const ProductDetail = ({ code, country }) => {
           const pr = r.data.filter(p=>p.value==code)[0];
           if(pr){
             setFieldValue('product', code);
+            setLabelName(pr.label_name);
           } 
         }
       }).catch((e)=>{
@@ -61,6 +63,15 @@ const ProductDetail = ({ code, country }) => {
       fetchServices(values.country, code);
     },[country]);
     
+    const setNewlabelName = (v) => {
+      let nw = services.filter((val)=>val.value==v)[0];
+      if(nw){ 
+        setFieldValue('product', v);
+        setLabelName(nw.label_name);
+      }
+      console.log(services, nw, v);
+    }
+
     const makePayment = (data) => {
         dispatch(confluxAction.sendTx(data, setSubmitting, resetForm));
     }
@@ -110,7 +121,7 @@ const ProductDetail = ({ code, country }) => {
                 </div>
                 <div className="input-group">
                   <label htmlFor="product">Service</label>
-                  <select id="product" type="text" value={values.product} onBlur={handleBlur} onChange={handleChange}>
+                  <select id="product" type="text" value={values.product} onBlur={handleBlur} onChange={(v) => setNewlabelName(v.target.value)}>
                     <option selected value='' disabled>Please Select a Service</option>
                     {services.map((r, i) => <option key={i} value={r.value}>{r.label}</option>)}
                   </select>
@@ -119,7 +130,7 @@ const ProductDetail = ({ code, country }) => {
                   ) : null}
                 </div>
                 <div className="input-group">
-                  <label htmlFor="customer">Customer</label>
+                  <label htmlFor="customer">{labelName}</label>
                   <input id="customer" type="text" 
                     value={values.customer}
                     onBlur={handleBlur}

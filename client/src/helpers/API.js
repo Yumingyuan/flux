@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toast from 'react-hot-toast';
 // import config from '../config';
 // import { handleResponse } from './response';
 
@@ -28,13 +29,15 @@ API.interceptors.response.use(
         },
       };
     //   return handleResponse(errorMessage);
+      let errMessage = 'Network Error. Please check if you are connected to the internet.'
+      // toast.success(errMessage);
+      return Promise.reject(errMessage);
+    }else{
+      // return handleResponse(error);
       let errMessage = error.response.data.message || error.response.data.error;
       return Promise.reject(errMessage);
     }
 
-    // return handleResponse(error);
-    let errMessage = error.response.data.message || error.response.data.error;
-    return Promise.reject(errMessage);
   }
 );
 

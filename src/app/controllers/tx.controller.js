@@ -13,7 +13,7 @@ const txController = {
         let response = config.PROD? flutteProd:flutteData;
         // console.log(response, config.PROD);
         let up = response.data.filter((r)=>r.country===country);
-        let data = up.map(({biller_name, name, short_name}) => { return {label:`${name} (${biller_name})`, value:short_name}; });
+        let data = up.map(({biller_name, name, short_name, label_name}) => { return {label:`${name} (${biller_name})`, value:short_name, label_name: `${label_name}`}; });
         return jsonS(res, data, 'success', 200);
     },
 
