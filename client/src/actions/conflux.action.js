@@ -18,8 +18,7 @@ function connectPortal(setSubmitting) {
     let allowed = Boolean(window.conflux && window.conflux.isConfluxPortal);
     // console.log(allowed);
     if(allowed){
-      let ee = await window.conflux.enable();
-      console.log(ee);
+      window.conflux.enable();
       const conflux = await window.conflux.send("cfx_requestAccounts");
       console.log(conflux);
       if(conflux && conflux.length > 0){
@@ -68,6 +67,7 @@ function isPortalInstalled(){
         restoreSession(accounts);
       }else{
         // dispatch(connectPortal()) 
+        window.conflux.enable();
       }
       dispatch(success({}));
     }
