@@ -33,6 +33,7 @@ const Content = () => {
     const [counter, setCounter] = useState(0);
     const dispatch = useDispatch();
     useEffect(() => {
+        // window.conflux.enable();
         dispatch(confluxAction.isPortalInstalled());
     }, []);
     useEffect(()=>{

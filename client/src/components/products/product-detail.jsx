@@ -158,12 +158,12 @@ const ProductDetail = ({ code, country }) => {
                     onChange={handleChange} />
                 </div> */}
                 <div className="py-2">
-                 {/* {state.connected ?  */}
-                 <button className="btn btn-primary w-100" type="submit" disabled={isSubmitting} >
+                 {state.connected ? 
+                 <button className="btn btn-primary w-100" type="submit" disabled={isSubmitting || !state.confluxInstalled } >
                       {!isSubmitting ? 'Start Buying' : 'Please Wait...'}</button>
-                  {/*     :
-                 <button className="btn btn-primary w-100" onClick={ConnectConflux} disabled={isSubmitting || !state.confluxInstalled } >
-                                {!state.confluxInstalled ? 'Please Install Conflux Portal to Purchase': !state.connecting ? 'Please Connect to Conflux Portal' : 'Please Wait....'}</button>} */}
+                       :
+                  <button className="btn btn-primary w-100" onClick={ConnectConflux} disabled={isSubmitting || !state.confluxInstalled } >
+                                {!state.confluxInstalled ? 'Please Install Conflux Portal to Purchase': !state.connecting ? 'Please Connect to Conflux Portal' : 'Please Wait....'}</button>}
                 </div>
               </div>
             </form>

@@ -19,13 +19,14 @@ function connectPortal(setSubmitting) {
     // console.log(allowed);
     if(allowed){
       window.conflux.enable();
-      const conflux = await window.conflux.send("cfx_requestAccounts");
-      console.log(conflux);
-      if(conflux && conflux.length > 0){
-        return dispatch(success({account:conflux}));
-      } else{
-        return dispatch(failure({error: conflux}))
-      }
+      window.conflux.send("cfx_requestAccounts").then((conflux)=>{
+        console.log(conflux);
+        if(conflux && conflux.length > 0){
+          return dispatch(success({account:conflux}));
+        } else{
+          return dispatch(failure({error: conflux}))
+        }
+      });
     }else{
       return dispatch(failureTOconnect({error: "Please Install conflux portal"}))
     }
@@ -56,20 +57,21 @@ function restoreSession(account){
 
 function isPortalInstalled(){
   return async(dispatch) => {
-    console.log('coecty');
+    // console.log('coecty');
     let allowed = Boolean(window.conflux && window.conflux.isConfluxPortal);
     console.log(allowed);
     if(!allowed) dispatch(failure({}));
     if(allowed){
-      const accounts = await window.conflux.send({ method: 'cfx_accounts' })
-      console.log('acct===>', accounts, window.conflux.selectedAddress);
-      if(accounts && accounts.length > 0){
-        restoreSession(accounts);
-      }else{
-        // dispatch(connectPortal()) 
-        window.conflux.enable();
-      }
-      dispatch(success({}));
+      window.conflux.send({ method: 'cfx_accounts' }).then((accounts)=>{
+        console.log('acct===>', accounts, window.conflux.selectedAddress);
+        if(accounts && accounts.length > 0){
+          restoreSession(accounts);
+        }else{
+          // dispatch(connectPortal()) 
+          // window.conflux.enable();
+        }
+        dispatch(success({}));
+      });
     }
   };
   function success(user) {
