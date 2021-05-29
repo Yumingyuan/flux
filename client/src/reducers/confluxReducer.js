@@ -15,6 +15,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         connected:true,
+        connecting:false,
         confluxInstalled:true,
         account: action.user.account
       }
