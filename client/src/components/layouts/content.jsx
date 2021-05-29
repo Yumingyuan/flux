@@ -52,7 +52,6 @@ const Content = () => {
 
     useEffect(()=>{
         if(window.conflux && window.window.conflux.isConfluxPortal){
-            console.log('yessss')
             if(loading && state.connected){
                 setLoading(false);
             }else if (loading && !state.connected && !state.connecting){
