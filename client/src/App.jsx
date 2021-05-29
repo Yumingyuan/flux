@@ -5,11 +5,11 @@ import MetaHeader from './components/layouts/metaHeader';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
-  if (window) {
-    window.console.log = function () {};
-    window.console.warn = function () {};
-    window.console.error = function () {};
-  }
+  // if (window) {
+  //   window.console.log = function () {};
+  //   window.console.warn = function () {};
+  //   window.console.error = function () {};
+  // }
 
   return (
     <>

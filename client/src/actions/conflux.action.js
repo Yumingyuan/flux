@@ -66,6 +66,8 @@ function isPortalInstalled(){
       console.log('acct===>', accounts, window.conflux.selectedAddress);
       if(accounts && accounts.length > 0){
         restoreSession(accounts);
+      }else{
+        // dispatch(connectPortal()) 
       }
       dispatch(success({}));
     }

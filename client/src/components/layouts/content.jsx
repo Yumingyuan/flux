@@ -11,6 +11,7 @@ import Footer from './footer';
 import { useDispatch, useSelector } from 'react-redux';
 import confluxAction from '../../actions/conflux.action';
 import { AlertResp } from '../../helpers/alert';
+import toast from 'react-hot-toast';
 
 export const history = createBrowserHistory();
 
@@ -29,6 +30,7 @@ const Content = () => {
     const [loading, setLoading] = useState(true);
     const [loadingMSg, setLoadingMsg] = useState('Loading...');
     const state = useSelector((state) => state.conflux);
+    const [counter, setCounter] = useState(0);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(confluxAction.isPortalInstalled());
@@ -37,19 +39,21 @@ const Content = () => {
         let allowed = Boolean(window.conflux && window.conflux.isConfluxPortal);
         // console.log('allowed===>', allowed);
         if(allowed){
-        window.conflux.on('accountsChanged', function (accounts) {
-            // Time to reload your interface with accounts[0]!
-            if(accounts && accounts.length > 0){
-                console.log('acct-change', accounts);
-                dispatch(confluxAction.restoreSession(accounts));
-            }
-        })}
+            window.conflux.on('accountsChanged', function (accounts) {
+                // Time to reload your interface with accounts[0]!
+                if(accounts && accounts.length > 0){
+                    console.log('acct-change', accounts);
+                    dispatch(confluxAction.restoreSession(accounts));
+                }
+            })
+        }
     })
     // console.log(state);
 
     useEffect(()=>{
-        // console.log('state', state);
+        console.log(counter)
         if(loading && state.confluxInstalled){
+            console.log('state', state, counter);
             if(loading && state.connected){
                 setLoading(false);
             }else if (loading && !state.connected && !state.connecting){
@@ -57,12 +61,18 @@ const Content = () => {
                 dispatch(confluxAction.connectPortal());
             }
         }
+        setCounter(counter+1);
+        if(counter > 0){
+            setLoading(false);
+        }
     }, [state]);
+
     if(loading){
         return <Loading msg={loadingMSg} />
     }
-    if(!loading && !state.confluxInstalled){
-
+    if(!loading && !state.confluxInstalled && counter>0){
+        // console.log('nope');
+        AlertResp('Info', 'install conflux Portal to proceed', 'info', 'install now', ()=> window.location.replace('https://portal.confluxnetwork.org/'))
     }
   return (
     <>

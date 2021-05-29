@@ -40,7 +40,7 @@ const Navbar = () => {
               { state.confluxInstalled ?
                state.connected ? <li className="suffix is-even-wider"><button className="btn btn-transparent suffix">Connected</button></li> :
               <li className="suffix is-even-wider"><button className="btn btn-transparent suffix" onClick={ConnectConflux}>Connect</button></li> : 
-              <li className="suffix is-even-wider"><button className="btn btn-transparent suffix" onClick={console.log("install")}>Install Conflux Portal</button></li> }
+              <li className="suffix is-even-wider"><button className="btn btn-transparent suffix" onClick={()=>window.location.replace('https://portal.confluxnetwork.org/')}>Install Conflux Portal</button></li> }
             </ul>
           </div>
         </nav>
