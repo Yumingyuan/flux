@@ -73,7 +73,9 @@ const ProductDetail = ({ code, country }) => {
     }
 
     const makePayment = (data) => {
-        dispatch(confluxAction.sendTx(data, setSubmitting, resetForm));
+        // dispatch(
+          confluxAction.sendTx(data, setSubmitting, resetForm);
+          // );
     }
 
     const ConnectConflux = () => {

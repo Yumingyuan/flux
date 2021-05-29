@@ -95,7 +95,7 @@ function sendTx(data, setSubmitting, resetForm){
     },
   ];
   console.log(params, conflux.networkVersion, allowedNetowrk)
-  return (dispatch) => {
+  // return (dispatch) => {
     if(accounts && conflux.networkVersion!=allowedNetowrk){
       window.conflux
         .send("cfx_sendTransaction", params)
@@ -121,5 +121,5 @@ function sendTx(data, setSubmitting, resetForm){
       if(!accounts) AlertResp('Info', 'Please Connect to Conflux Wallet!!!', 'info', 'close');
       setSubmitting(false);
     }
-  }
+  // }
 }
