@@ -51,9 +51,7 @@ const Content = () => {
     console.log(state, loading, counter);
 
     useEffect(()=>{
-        // console.log(counter);
         if(loading && state.confluxInstalled){
-            // console.log('state', state, counter);
             if(loading && state.connected){
                 setLoading(false);
             }else if (loading && !state.connected && !state.connecting){
