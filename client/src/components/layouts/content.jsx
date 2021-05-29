@@ -72,7 +72,7 @@ const Content = () => {
     }
     if(!loading && !state.confluxInstalled && counter>0){
         // console.log('nope');
-        AlertResp('Info', 'install conflux Portal to proceed', 'info', 'install now', ()=> window.location.replace('https://portal.confluxnetwork.org/'))
+        AlertResp('CFX Portal', 'Please Install conflux Portal to proceed!!!', 'info', 'install now', ()=> window.location.replace('https://portal.confluxnetwork.org/'))
     }
   return (
     <>
