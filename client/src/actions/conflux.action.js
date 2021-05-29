@@ -95,7 +95,7 @@ function sendTx(data, setSubmitting, resetForm){
     },
   ];
   console.log(params, conflux.networkVersion, allowedNetowrk)
-  return async(dispatch) => {
+  return (dispatch) => {
     if(accounts && conflux.networkVersion!=allowedNetowrk){
       window.conflux
         .send("cfx_sendTransaction", params)
