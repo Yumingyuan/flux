@@ -16,10 +16,10 @@ function connectPortal(setSubmitting) {
     // console.log('here');
     dispatch(request());
     let allowed = Boolean(window.conflux && window.conflux.isConfluxPortal);
-    console.log('all==>s ', allowed);
+    // console.log('all==>s ', allowed);
     if(allowed){
       window.conflux.enable().then((conflux)=>{
-        console.log(conflux);
+        // console.log(conflux);
         if(conflux && conflux.length > 0){
           return dispatch(success({account:conflux}));
         } else{
@@ -62,11 +62,11 @@ function isPortalInstalled(){
     if(!allowed) dispatch(failure({}));
     if(allowed){
       window.conflux.send({ method: 'cfx_accounts' }).then((accounts)=>{
-        console.log('acct===>', accounts, window.conflux.selectedAddress);
+        // console.log('acct===>', accounts, window.conflux.selectedAddress);
         if(accounts && accounts.length > 0){
           restoreSession(accounts);
         }
-        dispatch(success({}));
+        dispatch(success(accounts));
       });
     }
   };

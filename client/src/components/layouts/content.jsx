@@ -33,7 +33,7 @@ const Content = () => {
     const [counter, setCounter] = useState(0);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(confluxAction.isPortalInstalled());
+        // dispatch(confluxAction.isPortalInstalled());
     }, []);
     useEffect(()=>{
         let allowed = Boolean(window.conflux && window.conflux.isConfluxPortal);
@@ -51,7 +51,8 @@ const Content = () => {
     console.log(state, loading, counter);
 
     useEffect(()=>{
-        if(loading && state.confluxInstalled){
+        if(window.conflux && window.window.conflux.isConfluxPortal){
+            console.log('yessss')
             if(loading && state.connected){
                 setLoading(false);
             }else if (loading && !state.connected && !state.connecting){
@@ -59,10 +60,10 @@ const Content = () => {
                 setLoadingMsg('Connecting to Conflux Portal...')
                 dispatch(confluxAction.connectPortal());
             }
-        }
-        setCounter(counter+1);
-        if(counter > 1 && !state.connecting){
-            setLoading(false);
+            setCounter(counter+1);
+            if(counter > 1 && !state.connecting){
+                setLoading(false);
+            }
         }
     }, [state]);
 
