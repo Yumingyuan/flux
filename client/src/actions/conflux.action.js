@@ -119,6 +119,7 @@ function sendTx(data, setSubmitting, resetForm){
       console.log('error==>s', conflux.networkVersion, allowedNetowrk, accounts);
       if(conflux.networkVersion==allowedNetowrk) AlertResp('Info', `Please Switch to ${ DEV ? 'Test': 'Conflux Main'} Network!!!`, 'info', 'close');
       if(!accounts) AlertResp('Info', 'Please Connect to Conflux Wallet!!!', 'info', 'close');
+      AlertResp('error', 'unknown error', 'error', 'close');
       setSubmitting(false);
     }
   // }
