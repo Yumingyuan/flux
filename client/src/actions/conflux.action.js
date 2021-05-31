@@ -81,20 +81,19 @@ function isPortalInstalled(){
 function sendTx(data, setSubmitting, resetForm){
   // const { acctRec, amount } = data;
   const conflux = window.conflux;
-  console.log(data)
+  // console.log(data)
   const accounts = conflux.selectedAddress
-  console.log(accounts);
+  // console.log(accounts);
   const params = [
     {
       from: accounts,
       to: adminAccount,
       gas: "0x76c0",
-      gasPrice: "0x9184e72a000",
-      value: data.amountCFXUnit, 
-      // value: "3"
+      gasPrice: '0x1',
+      value: data.amountCFXUnit
     },
   ];
-  console.log(params, conflux.networkVersion, allowedNetowrk)
+  // console.log(params, conflux.networkVersion, allowedNetowrk)
   // return (dispatch) => {
     if(accounts && conflux.networkVersion!=allowedNetowrk){
       window.conflux
@@ -116,7 +115,7 @@ function sendTx(data, setSubmitting, resetForm){
           // Like a typical promise, returns an error on rejection.
         })
     }else{
-      console.log('error==>s', conflux.networkVersion, allowedNetowrk, accounts);
+      // console.log('error==>s', conflux.networkVersion, allowedNetowrk, accounts);
       if(conflux.networkVersion==allowedNetowrk) AlertResp('Info', `Please Switch to ${ DEV ? 'Test': 'Conflux Main'} Network!!!`, 'info', 'close');
       if(!accounts) AlertResp('Info', 'Please Connect to Conflux Wallet!!!', 'info', 'close');
       AlertResp('error', 'unknown error', 'error', 'close');
