@@ -147,6 +147,7 @@ const ProductDetail = ({ code, country }) => {
                     value={values.amount}
                     onBlur={handleBlur}
                     onChange={handleChange}
+                    max={999999}
                     />
                     {errors.amount && touched.amount ? (
                         <p style={{color:'red', opacity:0.7}}>*{errors.amount}</p>
