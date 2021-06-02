@@ -1,5 +1,6 @@
 import React from 'react';
 import { HeroBanner } from '../../assets/image';
+import { Link } from 'react-router-dom';
 
 const pretext = 'LIVE ON CRYPTO',
 herotext = 'Make your daily payments with crypto',
