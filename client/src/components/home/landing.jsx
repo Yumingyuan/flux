@@ -20,7 +20,7 @@ const Landing = () =>{
           </p>
   
           <div className="">
-            <a href="#"><button className="btn btn-primary prefix">{buyText}</button></a>
+            <Link to="/browse"><button className="btn btn-primary prefix">{buyText}</button></Link>
           </div>
           <img src={HeroBanner} alt="" className="main-hero-image z-depth-2" />
         </div>
