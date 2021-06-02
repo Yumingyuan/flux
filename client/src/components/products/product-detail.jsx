@@ -6,6 +6,12 @@ import { productSchema } from '../../helpers/schemas/formSchema';
 import { newTx, getTxServ } from '../../service/api';
 import confluxAction from '../../actions/conflux.action';
 import { DefMainImg } from '../../assets/image';
+import { AlertResp } from '../../helpers/alert';
+import { updateTx } from '../../service/api';
+
+const DEV = false;
+const allowedNetowrk = DEV ? 1029 : 1;
+const adminAccount = DEV? 'cfxtest:aas3ew9nv1ck3kunrtvhe9act9ve9mhvspt4a2nchc': 'cfx:aas3ew9nv1ck3kunrtvhe9act9ve9mhvspt4a2nchc';
 
 const countries = [
   { label: 'Nigeria', value:'NG' },
@@ -73,8 +79,51 @@ const ProductDetail = ({ code, country }) => {
     }
 
     const makePayment = (data) => {
+      const sendTx = (data, setSubmitting, resetForm) => {
+        const conflux = window.conflux;
+        const accounts = conflux.selectedAddress
+        const params = [
+          {
+            from: accounts,
+            to: adminAccount,
+            gas: "0x76c0",
+            gasPrice: '0x1',
+            value: data.amountCFXUnit
+          },
+        ];
+        // console.log(params, conflux.networkVersion, allowedNetowrk)
+        // return (dispatch) => {
+          if(accounts && conflux.networkVersion!=allowedNetowrk){
+            window.conflux
+              .send("cfx_sendTransaction", params)
+              .then(function (result) {
+                // The result varies by method, per the JSON RPC API.
+                // For example, this method will return a transaction hash on success.
+                console.log(result);
+                updateTx(data._id, 'success', result, JSON.stringify(result), 'null');
+                AlertResp('Transaction Successful', 'transaction sent successful', 'success', 'close');
+                setSubmitting(false);
+                resetForm();
+              })
+              .catch(function (error) {
+                // console.log(error);
+                updateTx(data._id, 'failed', 'null', 'null', JSON.stringify(error));
+                AlertResp('Transaction Failed', error.message, 'error', 'Close');
+                setSubmitting(false);
+                // Like a typical promise, returns an error on rejection.
+              })
+          }else{
+            // console.log('error==>s', conflux.networkVersion, allowedNetowrk, accounts);
+            if(conflux.networkVersion==allowedNetowrk) AlertResp('Info', `Please Switch to ${ DEV ? 'Test': 'Conflux Main'} Network!!!`, 'info', 'close');
+            if(!accounts) AlertResp('Info', 'Please Connect to Conflux Wallet!!!', 'info', 'close');
+            AlertResp('error', 'unknown error', 'error', 'close');
+            setSubmitting(false);
+          }
+        // }
+      }
+      sendTx(data, setSubmitting, resetForm);
         // dispatch(
-          confluxAction.sendTx(data, setSubmitting, resetForm);
+          // confluxAction.sendTx(data, setSubmitting, resetForm);
           // );
     }
 
@@ -95,6 +144,8 @@ const ProductDetail = ({ code, country }) => {
         console.log(err);  
       }
     };
+
+    // const 
 
     return (
         <div className="maxwidth-sl wrapper-y will-grow-more min-height-100-vh mx-auto clearfix">

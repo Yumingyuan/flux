@@ -19,7 +19,6 @@ const Landing = () =>{
             <br/>
             {caption2}
           </p>
-  
           <div className="">
             <Link to="/browse"><button className="btn btn-primary prefix">{buyText}</button></Link>
           </div>
