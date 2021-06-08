@@ -8,6 +8,7 @@ import confluxAction from '../../actions/conflux.action';
 import { DefMainImg } from '../../assets/image';
 import { AlertResp } from '../../helpers/alert';
 import { updateTx } from '../../service/api';
+import { useHistory } from "react-router-dom";
 
 const DEV = false;
 const allowedNetowrk = DEV ? 1029 : 1;
@@ -22,6 +23,7 @@ const defaultImage = DefMainImg;
 
 const ProductDetail = ({ code, country }) => {
     const state = useSelector((state) => state.conflux);
+    let history = useHistory();
     const [services, setServices] = useState([]);
     const [labelName, setLabelName] = useState('customer');
     const dispatch = useDispatch();
@@ -137,7 +139,11 @@ const ProductDetail = ({ code, country }) => {
         if(state.connected){
           let r = await newTx(values);
           if(r.status=='success'){
-            return makePayment(r.data); 
+            // return makePayment(r.data); 
+            return history.push({
+              pathname: '/summary',
+              state: { data:r.data }
+            })
           }
         }
       }catch(err){

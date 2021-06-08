@@ -48,7 +48,7 @@ const Content = () => {
             })
         }
     })
-    console.log(state, loading, counter);
+    // console.log(state, loading, counter);
 
     useEffect(()=>{
         if(window.conflux && window.window.conflux.isConfluxPortal){
