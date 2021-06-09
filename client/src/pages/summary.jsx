@@ -61,7 +61,7 @@ const Summary = () => {
                   // The result varies by method, per the JSON RPC API.
                   // For example, this method will return a transaction hash on success.
                 //   console.log(result);
-                  // updateTx(data._id, 'success', result, JSON.stringify(result), 'null');
+                  updateTx(data._id, 'success', result, JSON.stringify(result), 'null');
                   // AlertResp('Transaction Successful', 'transaction sent successful', 'success', 'close');
                   // setSubmitting(false);
                   history.push({ 
@@ -71,7 +71,7 @@ const Summary = () => {
                 })
                 .catch(function (error) {
                   console.log('error===>', error);
-                  // updateTx(data._id, 'failed', 'null', 'null', JSON.stringify(error));
+                  updateTx(data._id, 'failed', 'null', 'null', JSON.stringify(error));
                   // AlertResp('Transaction Failed', error.message, 'error', 'Close');
                   // setSubmitting(false);
                   history.push({ 
@@ -82,12 +82,21 @@ const Summary = () => {
                   // Like a typical promise, returns an error on rejection.
                 })
             }else{
+              let error;
               console.log('error==>s', conflux.networkVersion, allowedNetowrk, accounts, DEV, String(conflux.networkVersion)==String(allowedNetowrk));
               if(String(conflux.networkVersion)==String(allowedNetowrk))
-                AlertResp('Info', `Please Switch to ${ DEV ? 'Test': 'Conflux Main'} Network!!!`, 'info', 'close');
+                // AlertResp('Info', `Please Switch to ${ DEV ? 'Test': 'Conflux Main'} Network!!!`, 'info', 'close');
+                error = `Please Switch to ${ DEV ? 'Test': 'Conflux Main'} Network!!!`;
               else if(!accounts)
-                AlertResp('Info', 'Please Connect to Conflux Wallet!!!', 'info', 'close');
-              else AlertResp('error', 'unknown error', 'error', 'close');
+                // AlertResp('Info', 'Please Connect to Conflux Wallet!!!', 'info', 'close');
+                error = 'Please Connect to Conflux Wallet!!!'
+              else 
+                // AlertResp('error', 'unknown error', 'error', 'close');
+                error = 'unkown error';
+                history.push({ 
+                  pathname:'/info',
+                  state: { success: false, msg:error}
+                });
             }
         }
         sendTx(data, setSubmitting, null);

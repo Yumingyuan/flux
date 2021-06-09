@@ -12,7 +12,7 @@ const Success = () => {
     const [data, setData] = useState(null);
 
     useEffect(()=>{
-        console.log('location--->', location);
+        // console.log('location--->', location);
         if(!location.state){
             return history.replace('/browse');
         }else{
