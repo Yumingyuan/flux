@@ -59,11 +59,19 @@ const Summary = () => {
                 console.log('response=',res);
                 if(res.code===4001){
                   updateTx(data._id, 'failed', 'null', 'null', JSON.stringify(res));
-                  AlertResp('Transaction Failed', res.message, 'error', 'Close');
+                  // AlertResp('Transaction Failed', res.message, 'error', 'Close');
+                  history.push({ 
+                    pathname:'/info',
+                    state: { success: false, msg:res.message}
+                  });
                 }else{
                     updateTx(data._id, 'success', res, JSON.stringify(res), 'null');
-                    AlertResp('Transaction Successful', 'transaction sent successful', 'success', 'close');
+                    // AlertResp('Transaction Successful', 'transaction sent successful', 'success', 'close');
                     // setSubmitting(false);
+                    history.push({ 
+                      pathname:'/info',
+                      state: { success: true, msg:'transaction successful'}
+                    });
                 }
               }
               window.conflux.sendAsync({
