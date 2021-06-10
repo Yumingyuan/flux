@@ -55,32 +55,46 @@ const Summary = () => {
           console.log(params, accounts, conflux.networkVersion, allowedNetowrk);
             if(accounts && String(conflux.networkVersion)!=String(allowedNetowrk)){
                 // setSubmitting(true);
-              window.conflux
-                .send("cfx_sendTransaction", params)
-                .then(function (result) {
-                  // The result varies by method, per the JSON RPC API.
-                  // For example, this method will return a transaction hash on success.
-                //   console.log(result);
-                  updateTx(data._id, 'success', result, JSON.stringify(result), 'null');
-                  // AlertResp('Transaction Successful', 'transaction sent successful', 'success', 'close');
-                  // setSubmitting(false);
-                  history.push({ 
-                    pathname:'/info',
-                    state: { success: true, msg:'transaction successful'}
-                  });
-                })
-                .catch(function (error) {
-                  console.log('error===>', error);
-                  updateTx(data._id, 'failed', 'null', 'null', JSON.stringify(error));
-                  // AlertResp('Transaction Failed', error.message, 'error', 'Close');
-                  // setSubmitting(false);
-                  history.push({ 
-                    pathname:'/info',
-                    state: { success: false, msg:error.message}
-                  });
-                  // history.replace();
-                  // Like a typical promise, returns an error on rejection.
-                })
+              const response = (res) => {
+                console.log('response=',res);
+                if(res.code===4001){
+                  updateTx(data._id, 'failed', 'null', 'null', JSON.stringify(res));
+                  AlertResp('Transaction Failed', res.message, 'error', 'Close');
+                }else{
+                    updateTx(data._id, 'success', res, JSON.stringify(res), 'null');
+                    AlertResp('Transaction Successful', 'transaction sent successful', 'success', 'close');
+                    // setSubmitting(false);
+                }
+              }
+              window.conflux.sendAsync({
+                method: "cfx_sendTransaction",
+                params,
+                from: accounts
+              }, response);
+                // .then(function (result) {
+                //   // The result varies by method, per the JSON RPC API.
+                //   // For example, this method will return a transaction hash on success.
+                // //   console.log(result);
+                //   updateTx(data._id, 'success', result, JSON.stringify(result), 'null');
+                //   // AlertResp('Transaction Successful', 'transaction sent successful', 'success', 'close');
+                //   // setSubmitting(false);
+                //   history.push({ 
+                //     pathname:'/info',
+                //     state: { success: true, msg:'transaction successful'}
+                //   });
+                // })
+                // .catch(function (error) {
+                //   console.log('error===>', error);
+                //   updateTx(data._id, 'failed', 'null', 'null', JSON.stringify(error));
+                //   // AlertResp('Transaction Failed', error.message, 'error', 'Close');
+                //   // setSubmitting(false);
+                //   history.push({ 
+                //     pathname:'/info',
+                //     state: { success: false, msg:error.message}
+                //   });
+                //   // history.replace();
+                //   // Like a typical promise, returns an error on rejection.
+                // })
             }else{
               let error;
               console.log('error==>s', conflux.networkVersion, allowedNetowrk, accounts, DEV, String(conflux.networkVersion)==String(allowedNetowrk));
