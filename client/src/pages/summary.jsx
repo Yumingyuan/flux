@@ -11,7 +11,7 @@ import { AlertResp } from '../helpers/alert';
 import { updateTx } from '../service/api';
 
 
-const DEV = false;
+const DEV = true;
 const allowedNetowrk = DEV ? 1029 : 1;
 const adminAccount = DEV ? 'cfxtest:aas3ew9nv1ck3kunrtvhe9act9ve9mhvspt4a2nchc': 'cfx:aas3ew9nv1ck3kunrtvhe9act9ve9mhvspt4a2nchc';
 const adminAccountOld = '0x1d924bEB8dC49cA60b6bE2727C027fE24fa8F173';
@@ -55,23 +55,25 @@ const Summary = () => {
           console.log(params, accounts, conflux.networkVersion, allowedNetowrk);
             if(accounts && String(conflux.networkVersion)!=String(allowedNetowrk)){
                 // setSubmitting(true);
-              const response = (res) => {
-                console.log('response=',res);
-                if(res.code===4001){
-                  updateTx(data._id, 'failed', 'null', 'null', JSON.stringify(res));
-                  // AlertResp('Transaction Failed', res.message, 'error', 'Close');
-                  history.push({ 
-                    pathname:'/info',
-                    state: { success: false, msg:res.message}
-                  });
-                }else{
-                    updateTx(data._id, 'success', res, JSON.stringify(res), 'null');
-                    // AlertResp('Transaction Successful', 'transaction sent successful', 'success', 'close');
-                    // setSubmitting(false);
+              const response = (res, data) => {
+                console.log('response=',res, data);
+                if(res){
+                  if(res.code===4001){
+                    updateTx(data._id, 'failed', 'null', 'null', JSON.stringify(res));
+                    // AlertResp('Transaction Failed', res.message, 'error', 'Close');
                     history.push({ 
                       pathname:'/info',
-                      state: { success: true, msg:'transaction successful'}
+                      state: { success: false, msg:res.message}
                     });
+                  }
+                }else{
+                  updateTx(data._id, 'success', data, JSON.stringify(data), 'null');
+                  // AlertResp('Transaction Successful', 'transaction sent successful', 'success', 'close');
+                  // setSubmitting(false);
+                  history.push({ 
+                    pathname:'/info',
+                    state: { success: true, msg:'transaction successful'}
+                  });
                 }
               }
               window.conflux.sendAsync({
