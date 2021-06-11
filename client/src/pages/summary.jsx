@@ -11,7 +11,7 @@ import { AlertResp } from '../helpers/alert';
 import { updateTx } from '../service/api';
 
 
-const DEV = false;
+const DEV = true;
 const allowedNetowrk = DEV ? 1029 : 1;
 const adminAccount = DEV ? 'cfxtest:aas3ew9nv1ck3kunrtvhe9act9ve9mhvspt4a2nchc': 'cfx:aas3ew9nv1ck3kunrtvhe9act9ve9mhvspt4a2nchc';
 const adminAccountOld = '0x1d924bEB8dC49cA60b6bE2727C027fE24fa8F173';
@@ -55,7 +55,7 @@ const Summary = () => {
           console.log(params, accounts, conflux.networkVersion, allowedNetowrk);
             if(accounts && String(conflux.networkVersion)!=String(allowedNetowrk)){
                 // setSubmitting(true);
-              const response = (res, data) => {
+              const response = (res, da) => {
                 console.log('response=',res, data);
                 if(res){
                   if(res.code===4001){
@@ -67,7 +67,7 @@ const Summary = () => {
                     });
                   }
                 }else{
-                  updateTx(data._id, 'success', data, JSON.stringify(data), 'null');
+                  updateTx(data._id, 'success', da.result, JSON.stringify(da), 'null');
                   // AlertResp('Transaction Successful', 'transaction sent successful', 'success', 'close');
                   // setSubmitting(false);
                   history.push({ 
